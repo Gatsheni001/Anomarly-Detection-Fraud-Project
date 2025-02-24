@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import streamlit as st
 from sklearn.ensemble import IsolationForest
 
 # Load the data
@@ -30,5 +31,9 @@ df['Fraudelent'] = df['Outlier'].apply(lambda x: 'Fraud' if x == -1 else 'Legit'
 
 detected_fraud = df[df['Fraudelent'] == 'Fraud']
 detected_fraud = df[df['Fraudelent'] == 'Legit']
+
+#Sreamlit UI Setup
+st.set_pages_Config(page_title='Fraud Dectection App', page_icon='🧊', layout="wide")
+st.title('REAL-TIME FRAUD MONITORING DASHBOARD')
 
 
