@@ -55,3 +55,8 @@ This project is open-source and available under the **MIT License**.
 ---
 💡 **Contributions & Feedback Welcome!** 🚀
 
+![image](https://github.com/user-attachments/assets/33737c2b-7e85-4e1b-8db7-d19c35089678)
+
+![image](https://github.com/user-attachments/assets/97acd6a0-f6a0-4007-9844-609aaa56d366)
+![image](https://github.com/user-attachments/assets/7c0aec9a-f438-41f4-ad76-2228a863e4d9)
+
