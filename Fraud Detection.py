@@ -36,4 +36,9 @@ detected_fraud = df[df['Fraudelent'] == 'Legit']
 st.set_pages_Config(page_title='Fraud Dectection App', page_icon='🧊', layout="wide")
 st.title('REAL-TIME FRAUD MONITORING DASHBOARD')
 
-
+#Sidebar Filters
+st.sidebar.header("Filter Transcations")
+merchant_filter = st.sidebar.multiselect("Select Merchanr Category:", df['Merchant_Category'].unique())
+location_filter = st.sidebar.multiselect("Select Transaction:", df['Transaction_Location'].unique())
+behavior_filter = st.sidebar.multiselect("Select User Behavior:", df['User_Behavior'].unique())
+amount_range = st.sidebar.slider("Select Amount Range:", int(df['Amount'].min()), int(df['Amount'].max()), (int(df['Amount'].min()), int(df['Amount'].max())))
