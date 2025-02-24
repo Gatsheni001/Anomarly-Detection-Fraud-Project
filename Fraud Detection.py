@@ -42,3 +42,8 @@ merchant_filter = st.sidebar.multiselect("Select Merchanr Category:", df['Mercha
 location_filter = st.sidebar.multiselect("Select Transaction:", df['Transaction_Location'].unique())
 behavior_filter = st.sidebar.multiselect("Select User Behavior:", df['User_Behavior'].unique())
 amount_range = st.sidebar.slider("Select Amount Range:", int(df['Amount'].min()), int(df['Amount'].max()), (int(df['Amount'].min()), int(df['Amount'].max())))
+
+#Fraud Stats
+st.metric("Total Transcation", len(df))
+st.metric("Total Fraudulent Transcation", len(detected_fraud))
+st.metric("Total Legit Transcation", len(detected_legit))
