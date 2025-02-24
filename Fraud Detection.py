@@ -21,4 +21,14 @@ data = {
     'User_Behavior': np.random.choice('Frequent', 'Occasional', 'Rare', 500)
     
 }
+df = pd.DataFrame(data)
+
+#ISOLATION FOREST
+Iso_forest = IsolationForest(n_estimators=100, contamination=0.04, random_state=42)
+df['Outlier'] = Iso_forest.fit_predict(df[['Amount']])
+df['Fraudelent'] = df['Outlier'].apply(lambda x: 'Fraud' if x == -1 else 'Legit')
+
+detected_fraud = df[df['Fraudelent'] == 'Fraud']
+detected_fraud = df[df['Fraudelent'] == 'Legit']
+
 
