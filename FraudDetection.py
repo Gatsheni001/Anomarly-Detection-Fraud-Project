@@ -6,9 +6,53 @@ import streamlit as st
 import plotly.express as px
 from sklearn.ensemble import IsolationForest
 
+# Custom CSS for Enhanced UI
+def add_custom_css():
+    st.markdown(
+        """
+        <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .stButton > button {
+            background-color: #ff007f;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .stButton > button:hover {
+            background-color: #ff00ff;
+        }
+        .stDataFrame {
+            border: 2px solid #ff007f;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .css-1d391kg {
+            background-color: #222222 !important;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .metric-container {
+            background: linear-gradient(135deg, #ff007f, #00ff99);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Streamlit UI Setup
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 st.title("🔍 Real-Time Fraud Monitoring Dashboard")
+add_custom_css()
 
 # File Upload Section
 st.sidebar.header("Upload Your Transactions CSV File")
@@ -45,9 +89,13 @@ if uploaded_file is not None:
                      (df['Amount'].between(amount_range[0], amount_range[1]))]
 
     # Fraud Statistics
-    st.metric("Total Transactions", len(df))
-    st.metric("Fraudulent Transactions", len(detected_fraud))
-    st.metric("Fraud Percentage", f"{(len(detected_fraud)/len(df)*100):.2f}%")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown('<div class="metric-container">Total Transactions: {}</div>'.format(len(df)), unsafe_allow_html=True)
+    with col2:
+        st.markdown('<div class="metric-container">Fraudulent Transactions: {}</div>'.format(len(detected_fraud)), unsafe_allow_html=True)
+    with col3:
+        st.markdown('<div class="metric-container">Fraud Percentage: {:.2f}%</div>'.format((len(detected_fraud)/len(df)*100)), unsafe_allow_html=True)
 
     # Display Data
     st.write("## Transactions Overview")
