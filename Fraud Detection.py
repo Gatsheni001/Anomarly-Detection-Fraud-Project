@@ -32,3 +32,17 @@ detected_fraud = df[df['Fraudelent'] == 'Fraud']
 detected_fraud = df[df['Fraudelent'] == 'Legit']
 
 
+#Data Visualization
+st.write("********Transcations Overview********")
+st.dataframe(filtered_data)
+
+st.write("********Fraudulent Transactions********")
+st.dataframe(detected_fraud)
+
+
+#Visualizing the data with plotly
+st.write("********Data Visualization********")
+fig = px.scatter(df, x='TransactionId', y='Amount', color='Fraudelent',
+                 title="TRANSACTION AMOUNT WITH FRAUD HIGHLIGHTED",
+                 color_discrete_map={'Legit': 'blue', 'Fraud': 'red'})
+st.plotly_chart(fig)
